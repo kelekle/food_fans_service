@@ -1,12 +1,12 @@
 package com.star.foodfans.controller;
 
-import com.star.foodfans.service.ArticleServiceImpl;
+import com.star.foodfans.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +14,8 @@ import java.util.Map;
 public class ArticleController {
 
     @Autowired
-    private ArticleServiceImpl articleService;
+    @Qualifier(value = "ArticleService")
+    private ArticleService articleService;
 
     @RequestMapping(value = "/hot_articles", method= RequestMethod.GET)
     public void getHotArticles(){

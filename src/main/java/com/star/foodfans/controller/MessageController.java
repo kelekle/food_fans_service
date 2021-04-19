@@ -1,7 +1,8 @@
 package com.star.foodfans.controller;
 
-import com.star.foodfans.service.MessageServiceImpl;
+import com.star.foodfans.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 public class MessageController {
 
     @Autowired
-    private MessageServiceImpl messageService;
+    @Qualifier(value = "MessageService")
+    private MessageService messageService;
 
     @RequestMapping(value = "/send_message", method = RequestMethod.POST)
     public String sendMessage(HttpServletRequest request, String msg, String to){

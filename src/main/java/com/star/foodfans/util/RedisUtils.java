@@ -5,9 +5,9 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 /**
- * redis操作工具类.</br>
+ * redis操作工具类.
  * (基于RedisTemplate)
- * @author xcbeyond
+ * @author
  * 2018年7月19日下午2:56:24
  */
 @Component

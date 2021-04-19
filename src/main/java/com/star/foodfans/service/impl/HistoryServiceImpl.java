@@ -1,9 +1,10 @@
-package com.star.foodfans.service;
+package com.star.foodfans.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.auth0.jwt.JWT;
 import com.star.foodfans.dao.HistoryDao;
 import com.star.foodfans.entity.History;
+import com.star.foodfans.service.HistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -2,7 +2,6 @@ package com.star.foodfans.util;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -10,9 +9,8 @@ import java.util.Map;
 
 public class Utils {
 
-    public static final String resource_prefix = "http://192.168.0.109:8085/";
-
-    // token秘钥  太短会报错
+    public static final String resource_prefix = "http://192.168.0.111:8085/";
+    // token秘钥(太短会报错)：::
     public static final String SECRET = "qwerasdfdxzvdfajjlkjeiojznvxndjkfaowijjjdddlll";
     //6 hours
     public static final long TTL_MILLIS = 6 * 3600 * 1000;

@@ -2,6 +2,7 @@ package com.star.foodfans.controller;
 
 import com.star.foodfans.service.HistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 public class HistoryController {
 
     @Autowired
+    @Qualifier(value = "HistoryService")
     private HistoryService historyService;
 
     @RequestMapping(value = "/add_collection_video", method = RequestMethod.POST)

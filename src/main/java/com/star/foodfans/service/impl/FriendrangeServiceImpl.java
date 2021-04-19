@@ -1,14 +1,13 @@
-package com.star.foodfans.service;
+package com.star.foodfans.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.auth0.jwt.JWT;
-import com.star.foodfans.controller.User;
 import com.star.foodfans.dao.FriendrangeDao;
 import com.star.foodfans.dao.UserDao;
 import com.star.foodfans.entity.Friendrange;
 import com.star.foodfans.entity.Userinfo;
+import com.star.foodfans.service.FriendrangeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +25,7 @@ public class FriendrangeServiceImpl implements FriendrangeService {
     private UserDao userDao;
 
     @Override
-    public String addFriend(HttpServletRequest request, Integer friendId) {
+    public String follow(HttpServletRequest request, Integer friendId) {
         int uid = JWT.decode(request.getHeader("token")).getClaim("uid").asInt();
         JSONObject object = new JSONObject();
         if(friendrangeDao.selectByPrimaryKey(uid, friendId) != null){
@@ -50,7 +49,7 @@ public class FriendrangeServiceImpl implements FriendrangeService {
     }
 
     @Override
-    public String deleteFriend(HttpServletRequest request, Integer friendId) {
+    public String cancelFollow(HttpServletRequest request, Integer friendId) {
         int uid = JWT.decode(request.getHeader("token")).getClaim("uid").asInt();
         JSONObject object = new JSONObject();
         if (friendrangeDao.deleteByPrimaryKey(uid, friendId) > 0) {
@@ -63,6 +62,7 @@ public class FriendrangeServiceImpl implements FriendrangeService {
         return object.toJSONString();
     }
 
+    @Override
     public String getPersonalFriends(HttpServletRequest request) {
         int uid = JWT.decode(request.getHeader("token")).getClaim("uid").asInt();
         List<Friendrange>  friendranges = friendrangeDao.selectPersonalFriends(uid);

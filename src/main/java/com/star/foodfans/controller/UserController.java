@@ -1,8 +1,9 @@
 package com.star.foodfans.controller;
 
 import com.star.foodfans.entity.Userinfo;
-import com.star.foodfans.service.UserServiceImpl;
+import com.star.foodfans.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,7 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 public class UserController {
 
     @Autowired
-    private UserServiceImpl userService;
+    @Qualifier(value = "UserService")
+    private UserService userService;
 
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public String login(HttpServletResponse response, String email, String password) {
@@ -21,6 +23,11 @@ public class UserController {
         return userService.login(response, email, password);
     }
 
+    @GetMapping("/test")
+    public String test(HttpServletResponse response){
+        System.out.println(userService == null);
+        return userService.login(response,"","");
+    }
 //    @RequestMapping(value = "/register", method = RequestMethod.POST)
 //    public String register(String username, String password, String email, String code){
 //        Userinfo userinfo = new Userinfo();

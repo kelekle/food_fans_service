@@ -1,14 +1,12 @@
-package com.star.foodfans.service;
+package com.star.foodfans.service.impl;
 
-import com.auth0.jwt.JWT;
 import com.star.foodfans.dao.ArticleinfoDao;
-import com.star.foodfans.dao.ArticleinfoMapper;
 import com.star.foodfans.entity.Articleinfo;
+import com.star.foodfans.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +37,26 @@ public class ArticleServiceImpl implements ArticleService {
             map.put("urls", url);
         }
         return articleinfos;
+    }
+
+    @Override
+    public boolean publishArticle(String dish, String cuisine, String content) {
+        return false;
+    }
+
+    @Override
+    public Map queryArticle(int id) {
+        return null;
+    }
+
+    @Override
+    public boolean praiseArticle(int id) {
+        return false;
+    }
+
+    @Override
+    public boolean commentArticle(int id, int score, String content, Date date) {
+        return false;
     }
 
 }

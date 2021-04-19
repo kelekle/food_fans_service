@@ -4,7 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface FriendrangeService {
 
-    String addFriend(HttpServletRequest request, Integer friendId);
-    String deleteFriend(HttpServletRequest request, Integer friendId);
+    String follow(HttpServletRequest request, Integer friendId);
+    String cancelFollow(HttpServletRequest request, Integer friendId);
+    String getPersonalFriends(HttpServletRequest request);
 
 }

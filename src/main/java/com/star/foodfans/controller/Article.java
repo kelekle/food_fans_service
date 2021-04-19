@@ -90,9 +90,11 @@ public class Article {
         mapname.put("article",articleinfo);
         JSONArray commentList = new JSONArray();
         for(int i=0;i<commentinfoList.size();i++){
+            Userinfo userinfo1 = userinfoList.get(i);
+            if(userinfo1 == null)
+                continue;
             JSONObject map = new JSONObject();
             map.put("comment", commentinfoList.get(i));
-            Userinfo userinfo1 = userinfoList.get(i);
             userinfo1.setHeadpicture(resource_prefix + userinfo1.getHeadpicture());
             map.put("username", userinfo1);
             commentList.add(map);
@@ -268,6 +270,16 @@ public class Article {
 //        articleinfo = articleinfoDao.selectByPrimaryKey(articleid);
 //        articleinfo.setPraisenum(articleinfo.getPraisenum() + 1);
 //        articleinfoDao.updateByPrimaryKey(articleinfo);
+        History record  = historyDao.selectByPrimaryKey(userid, "A" + articleid);
+        if(record == null){
+            History history=new History();
+            history.setContentid("A"+articleid);
+            history.setUserid(userid);
+            long  timeNew =  System.currentTimeMillis(); // 13位数的时间戳
+            history.setCreatestamp(timeNew);
+            history.setIscollected(0);
+            historyDao.insert(history);
+        }
         History history = historyDao.selectByPrimaryKey(userid, "A" + String.valueOf(articleid));
         JSONObject jsonObject = new JSONObject();
         if(history.getIscollected() != 0){

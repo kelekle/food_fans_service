@@ -1,13 +1,13 @@
-package com.star.foodfans.service;
+package com.star.foodfans.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.auth0.jwt.JWT;
-import com.mysql.cj.xdevapi.JsonArray;
 import com.star.foodfans.dao.MessageDao;
 import com.star.foodfans.dao.UserDao;
 import com.star.foodfans.entity.Message;
 import com.star.foodfans.entity.Userinfo;
+import com.star.foodfans.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

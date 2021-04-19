@@ -1,4 +1,4 @@
-package com.star.foodfans.service;
+package com.star.foodfans.service.impl;
 
 
 import com.alibaba.fastjson.JSONObject;
@@ -8,6 +8,9 @@ import com.star.foodfans.dao.VideoinfoDao;
 import com.star.foodfans.entity.Articleinfo;
 import com.star.foodfans.entity.Model;
 import com.star.foodfans.entity.Videoinfo;
+import com.star.foodfans.service.MailService;
+import com.star.foodfans.service.UserService;
+import com.star.foodfans.service.impl.MailServiceImpl;
 import com.star.foodfans.util.RedisUtils;
 import com.star.foodfans.util.Utils;
 import com.star.foodfans.dao.UserDao;
@@ -44,7 +47,7 @@ public class UserServiceImpl implements UserService {
     private VideoinfoDao videoinfoDao;
 
     @Autowired
-    private MailServiceImpl mailService;
+    private MailService mailService;
 
     @Resource
     private RedisUtils redisUtils;
@@ -86,6 +89,7 @@ public class UserServiceImpl implements UserService {
             map.put("result", "验证码错误！");
             return JSONObject.toJSONString(map);
         }
+        userinfo.setHeadpicture("user/1/av003.jpg");
         int uid = userDao.insert(userinfo);
 //        System.out.println("uid: " + userinfo.getUserid());
         if(uid <= 0){
@@ -203,6 +207,7 @@ public class UserServiceImpl implements UserService {
         return JSONObject.toJSONString(map);
     }
 
+    @Override
     public String getPersonalInfo(HttpServletRequest request){
         int uid = JWT.decode(request.getHeader("token")).getClaim("uid").asInt();
         Userinfo userinfo = userDao.selectByPrimaryKey(uid);
@@ -210,6 +215,7 @@ public class UserServiceImpl implements UserService {
         return JSONObject.toJSONString(userinfo);
     }
 
+    @Override
     public String getCollectionInfo(HttpServletRequest request){
         int uid = JWT.decode(request.getHeader("token")).getClaim("uid").asInt();
 //        List<Videoinfo> videoList = videoinfoDao.selectVideoCollectionByUserid(uid);
@@ -221,6 +227,7 @@ public class UserServiceImpl implements UserService {
         return JSONObject.toJSONString(articleList);
     }
 
+    @Override
     public String getPublishInfo(HttpServletRequest request){
         int uid = JWT.decode(request.getHeader("token")).getClaim("uid").asInt();
         List<Videoinfo> videoList = videoinfoDao.selectVideoPublishByUserid(uid);
@@ -228,6 +235,7 @@ public class UserServiceImpl implements UserService {
         return getString(videoList, articleList);
     }
 
+    @Override
     public String getHistoryInfo(HttpServletRequest request){
         int uid = JWT.decode(request.getHeader("token")).getClaim("uid").asInt();
 //        List<Videoinfo> videoList = videoinfoDao.selectVideoHistoryByUserid(uid);
@@ -258,6 +266,7 @@ public class UserServiceImpl implements UserService {
         return JSONObject.toJSONString(modelList);
     }
 
+    @Override
     public String getEmailCode(String email){
         Map<String, String> map = new HashMap<>();
         String code = Utils.generateEmailCode();

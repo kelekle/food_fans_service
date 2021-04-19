@@ -24,4 +24,13 @@ public interface UserService {
 
     String updateUserHeadPicture(HttpServletRequest request, MultipartFile headPicture);
 
+    String getEmailCode(String email);
+
+    String getPersonalInfo(HttpServletRequest request);
+
+    String getCollectionInfo(HttpServletRequest request);
+
+    String getPublishInfo(HttpServletRequest request);
+
+    String getHistoryInfo(HttpServletRequest request);
 }

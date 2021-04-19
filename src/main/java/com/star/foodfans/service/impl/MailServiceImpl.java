@@ -1,5 +1,6 @@
-package com.star.foodfans.service;
+package com.star.foodfans.service.impl;
 
+import com.star.foodfans.service.MailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import java.io.File;
  * @author 风在野
  */
 @Service("MailService")
-public class MailServiceImpl implements MailService{
+public class MailServiceImpl implements MailService {
 
     private final Logger logger = LoggerFactory.getLogger(MailServiceImpl.class);
 

@@ -5,7 +5,7 @@ import java.sql.*;
 public class DBUtil {
 
     private String url = "jdbc:mysql://127.0.0.1:3306/class";
-    private String allUrl = url + "?user=kle&password=yqyforever";
+    private String allUrl = url + "?user=kle&password=***";
 
     public Connection getConnection(){
         Connection conn = null;

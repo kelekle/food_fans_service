@@ -37,7 +37,7 @@ public class UserController {
 //        return userService.register(userinfo, code);
 //    }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/register", method = RequestMethod.POST)
     public String register(String password, String email, String code){
         Userinfo userinfo = new Userinfo();
         userinfo.setPassword(password);
@@ -45,7 +45,7 @@ public class UserController {
         return userService.register(userinfo, code);
     }
 
-    @RequestMapping(value = "/find_password", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/find_pwd", method = RequestMethod.POST)
     public String findPassword(String email, String code, String newPassword){
         return userService.findPassword(email, code, newPassword);
     }
@@ -65,7 +65,7 @@ public class UserController {
         return userService.updateUserInfo(request, username, phone);
     }
 
-    @RequestMapping(value = "/get_email_code", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/get_code", method = RequestMethod.POST)
     public String getEmailCode(String email){
         return userService.getEmailCode(email);
     }
